@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'App de notas')</title>
+    <title>{{ $title ?? 'App de notas'}}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -15,14 +15,14 @@
                 <ul class="main-nav-list">
                     <li class="main-nav-item">
                     <!-- static/notes.html -->
-                        <a href="/notas" class="main-nav-link">
+                        <a href="{{ route('notes.index') }}" class="main-nav-link">
                             <i class="icon icon-th-list"></i>
                             <span>Ver notas</span>
                         </a>
                     </li>
                     <li class="main-nav-item active">
                         <!-- static/add-note.html -->
-                        <a href="/notas/crear" class="main-nav-link">
+                        <a href="{{ route('notes.create') }}" class="main-nav-link">
                             <i class="icon icon-pen"></i>
                             <span>Nueva nota</span>
                         </a>
@@ -31,7 +31,7 @@
             </nav>
         </header>
 
-        @yield('content')
+        {{ $slot }}
 
         <footer class="foot">
             <div class="ad">
@@ -41,7 +41,7 @@
                 </p>
             </div>
             <div class="license">
-                <p>© 2019 Derechos Reservados - Styde Limited</p>
+                <p>© {{ $currentYear }} Derechos Reservados - Styde Limited</p>
             </div>
         </footer>
     </div>

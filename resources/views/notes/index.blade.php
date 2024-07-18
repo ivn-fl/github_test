@@ -1,8 +1,5 @@
-@extends('layouts.app')
-
-@section('title','Listado de notas')
-    
-@section('content')
+<x-layout>
+    <x-slot:title>Listado de Notas</x-slot:title>
         <main class="content">
             <div class="cards">
 
@@ -18,7 +15,7 @@
                     </div>
 
                     <footer class="card-footer">
-                        <a class="action-link action-edit">
+                        <a href="{{ route('notes.edit', ['id' => $loop->iteration]) }}" class="action-link action-edit">
                             <i class="icon icon-pen"></i>
                         </a>
                         <a class="action-link action-delete">
@@ -183,4 +180,4 @@
                 </div>
             </div>
         </main>
-@endsection
+</x-layout>
