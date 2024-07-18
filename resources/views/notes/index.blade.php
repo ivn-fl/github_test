@@ -1,35 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <div class="wrap">
-        <header class="head">
-            <a href="#" class="logo"></a>
+@extends('layouts.app')
 
-            <nav class="main-nav">
-                <ul class="main-nav-list">
-                    <li class="main-nav-item active">
-                        <a href="/static/notes.html" class="main-nav-link">
-                            <i class="icon icon-th-list"></i>
-                            <span>Ver notas</span>
-                        </a>
-                    </li>
-                    <li class="main-nav-item">
-                        <a href="/static/add-note.html" class="main-nav-link">
-                            <i class="icon icon-pen"></i>
-                            <span>Nueva nota</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+@section('title','Listado de notas')
+    
+@section('content')
         <main class="content">
             <div class="cards">
+
+           @forelse($notes as $note)
+
+                <div class="card card-small">
+                    <div class="card-body">
+                        <h4>{{ $note }}</h4>
+
+                        <p>
+                            {{ $note }}
+                        </p>
+                    </div>
+
+                    <footer class="card-footer">
+                        <a class="action-link action-edit">
+                            <i class="icon icon-pen"></i>
+                        </a>
+                        <a class="action-link action-delete">
+                            <i class="icon icon-trash"></i>
+                        </a>
+                    </footer>
+                </div>
+
+                @empty
+                <p> No hay notas </p>
+
+            @endforelse
+
+            <div class="card card-small">
+                    <div class="card-body">
+                        <h4>Aprendiendo Blade</h4>
+
+                        @verbatim
+
+                        <p>
+                            Para imprimir una variable con Blade utilizamos esta sintaxis:<br>
+                            {{ $mi_variable }}
+                        </p>
+
+                        <p>
+                            Las directivas de Blade comienzan con un arroba, por ejemlo: <br>
+                            @foreach
+                        </p>
+                        @endverbatim
+                    </div>
+
+                    <footer class="card-footer">
+                        <a class="action-link action-edit">
+                            <i class="icon icon-pen"></i>
+                        </a>
+                        <a class="action-link action-delete">
+                            <i class="icon icon-trash"></i>
+                        </a>
+                    </footer>
+                </div>
+
+
                 <div class="card card-small">
                     <div class="card-body">
                         <h4>¿Para qué sirve Composer?</h4>
@@ -152,17 +183,4 @@
                 </div>
             </div>
         </main>
-        <footer class="foot">
-            <div class="ad">
-                <p>
-                    Esta aplicación es desarrollada en el curso
-                    <a href="https://styde.net/laravel-6">Primeros pasos con Laravel 6</a>.
-                </p>
-            </div>
-            <div class="license">
-                <p>© 2019 Derechos Reservados - Styde Limited</p>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+@endsection

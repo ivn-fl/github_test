@@ -19,14 +19,24 @@ Route::get('/', function () {
 });
 
 Route::get('/notas', function () {
-   return view('notes.index');
+
+    $notes = [
+        'Primera nota',
+        'Segunda nota',
+        'Tercera nota',
+        'Cuarta nota',
+        'Quinta nota',
+        '<script>alert("Codigo malo")</script>'
+    ];
+
+    return view('notes.index')->with('notes', $notes);
 });
 
 Route::get('/notas/{id}', function ($id) {
     return 'Detalle de la nota: '.$id;
 });
 
-Route::get('/notas/crear/form', function () {
+Route::get('/notas/crear', function () {
    return view('notes.create');;
 });
 
