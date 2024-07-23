@@ -13,6 +13,7 @@ class NoteController {
             'Tercera nota',
             'Cuarta nota',
             'Quinta nota',
+            'Sexta nota',
             '<script>alert("Codigo malo")</script>'
         ];
         return view('notes.index')->with('notes', $notes);
