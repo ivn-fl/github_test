@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\NoteController;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,28 +21,12 @@ Route::get('/', function () {
     return 'Pagina de inicio';
 });
 
-Route::get('/notas', function () {
+Route::get('/notas', [NoteController::class, 'index'])->name('notes.index');
 
-    $notes = [
-        'Primera nota',
-        'Segunda nota',
-        'Tercera nota',
-        'Cuarta nota',
-        'Quinta nota',
-        '<script>alert("Codigo malo")</script>'
-    ];
+Route::get('/notas/{id}', [NoteController::class,'show'])->name('notes.view');
 
-    return view('notes.index')->with('notes', $notes);
-})->name('notes.index');
+Route::get('/notas/crear', [NoteController::class,'create'])->name('notes.create');
 
-Route::get('/notas/{id}', function ($id) {
-    return 'Detalle de la nota: '.$id;
-})->name('notes.view');
+Route::post('/notas',[NoteController::class,'store'])->name('notes.store');
 
-Route::get('/notas/crear', function () {
-   return view('notes.create');;
-})->name('notes.create');
-
-Route::get('/notas/{id}/editar', function ($id) {
-    return 'Editar nota: '.$id;
-})->name('notes.edit');
+Route::get('/notas/{id}/editar', [NoteController::class,'edit'])->name('notes.edit');
